@@ -13,15 +13,18 @@ namespace Gomoku
     public partial class Form1 : Form
     {
         private Game game = new Game();
+        private int stepCount = 1;
+        private SortedList<String, Piece> totalPiece = new SortedList<string, Piece>();
+
         public Form1()
         {
             InitializeComponent();
-            Height = Properties.Resources.board.Height;
-            Width = Properties.Resources.board.Height;
+            Height = Properties.Resources.board_1.Height;
+            Width = Properties.Resources.board_1.Height;
+         
+
             MaximizeBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
-
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -31,18 +34,33 @@ namespace Gomoku
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            Piece piece = game.PlaceAPiece(e.X, e.Y);
-            if (piece != null)
+            if(e.Button == MouseButtons.Left)
             {
-                this.Controls.Add(piece);
+                Piece piece = game.PlaceAPiece(e.X, e.Y);
+                if (piece != null)
+                {
+                    stepCount++;
+                    this.Controls.Add(piece);
+                    totalPiece.Add($"step_{stepCount}", piece);
 
-                if(game.Winner == PieceType.BLACK)
-                {
-                    MessageBox.Show("黑棋獲勝");
+                    if (game.Winner == PieceType.BLACK)
+                    {
+                        MessageBox.Show("黑棋獲勝");
+                    }
+                    else if (game.Winner == PieceType.WHITE)
+                    {
+                        MessageBox.Show("白棋獲勝");
+                    }
                 }
-                else if (game.Winner == PieceType.WHITE)
+            }else if(e.Button == MouseButtons.Right){
+                if(stepCount != 0)
                 {
-                    MessageBox.Show("白棋獲勝");
+                    Piece removePiece = totalPiece[$"step_{stepCount}"];
+                    game.removeAPiece(removePiece);
+                    this.Controls.Remove(removePiece);
+                    game.changePiece(removePiece);
+                    totalPiece.Remove($"step_{stepCount}");
+                    stepCount--;
                 }
             }
         }

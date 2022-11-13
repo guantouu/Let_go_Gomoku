@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,40 @@ namespace Gomoku
             if (piece != null)
             {
                 CheckWinner();
-                if (currentPlayer == PieceType.BLACK)
-                    currentPlayer = PieceType.WHITE;
-                else
-                    currentPlayer = PieceType.BLACK;
+                changePiece(currentPlayer);
                 return piece;
             }
 
             return null;
+        }
+        
+        public void changePiece(PieceType player)
+        {
+            if(player == PieceType.BLACK)
+            {
+                currentPlayer = PieceType.WHITE;
+            }
+            else
+            {
+                currentPlayer = PieceType.BLACK;
+            }
+        }
+
+        public void changePiece(Piece removePiece)
+        {
+            if (removePiece.GetPieceType() == PieceType.BLACK)
+            {
+                currentPlayer = PieceType.BLACK;
+            }
+            else
+            {
+                currentPlayer = PieceType.WHITE;
+            }
+        }
+
+        public void removeAPiece(Piece removePiece)
+        {
+            board.RemoveAPiece(removePiece);
         }
 
         private void CheckWinner()

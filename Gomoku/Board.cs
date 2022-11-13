@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Gomoku
 {
@@ -49,6 +50,7 @@ namespace Gomoku
 
             Point formPos = convertToFormPosition(nodeId);
 
+
             if (type == PieceType.BLACK)
                 pieces[nodeId.X, nodeId.Y] = new BlackPiece(formPos.X, formPos.Y);
             else
@@ -56,6 +58,14 @@ namespace Gomoku
 
             lastPlacedNode = nodeId;
             return pieces[nodeId.X, nodeId.Y];
+        }
+
+        public void RemoveAPiece(Piece removePiece)
+        {
+            int x = removePiece.GetPoint().X;
+            int y = removePiece.GetPoint().Y;
+            Point nodeId = findTheClosetNode(x, y);
+            pieces[nodeId.X, nodeId.Y] = null;
         }
 
         private Point convertToFormPosition(Point nodeId)

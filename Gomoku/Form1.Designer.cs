@@ -32,11 +32,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Gomoku.Properties.Resources.board;
-            this.ClientSize = new System.Drawing.Size(710, 689);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackgroundImage = global::Gomoku.Properties.Resources.board_1;
+            this.ClientSize = new System.Drawing.Size(372, 260);
             this.Name = "Form1";
             this.Text = "五子棋";
             this.Load += new System.EventHandler(this.Form1_Load);
