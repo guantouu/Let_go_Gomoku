@@ -19,17 +19,15 @@ namespace Gomoku
         public Form1()
         {
             InitializeComponent();
-            Height = Properties.Resources.board_1.Height;
-            Width = Properties.Resources.board_1.Height;
-         
-
+            Height = Properties.Resources.board.Height;
+            Width = Properties.Resources.board.Height;
             MaximizeBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Let's Go 五子棋！");
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)

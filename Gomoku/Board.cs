@@ -10,12 +10,12 @@ namespace Gomoku
 {
     class Board
     {
-        public static readonly int NODE_COUNT = 9;
+        public static readonly int NODE_COUNT = 15;
         private static readonly Point NO_MATCH_NODE = new Point(-1, -1);
 
-        private static readonly int OFFSET = 75;
+        private static readonly int OFFSET = 65;
         private static readonly int NODE_RADIUS = 10;
-        private static readonly int NODE_DISTANCE = 75;
+        private static readonly int NODE_DISTANCE = 60;
 
         private Piece[,] pieces = new Piece[NODE_COUNT, NODE_COUNT];
 
