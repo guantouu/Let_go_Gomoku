@@ -10,12 +10,12 @@ namespace Gomoku
 {
     class Board
     {
-        public static readonly int NODE_COUNT = 15;
+        public static readonly int NODE_COUNT = 8;
         private static readonly Point NO_MATCH_NODE = new Point(-1, -1);
 
-        private static readonly int OFFSET = 65;
-        private static readonly int NODE_RADIUS = 10;
-        private static readonly int NODE_DISTANCE = 60;
+        private static readonly int OFFSET = 75; // 65
+        private static readonly int NODE_RADIUS = 10; // 10
+        private static readonly int NODE_DISTANCE = 75; // 60
 
         private Piece[,] pieces = new Piece[NODE_COUNT, NODE_COUNT];
 
@@ -31,7 +31,7 @@ namespace Gomoku
         public bool CanBePlaced(int x, int y)
         {
             Point nodeId = findTheClosetNode(x, y);
-
+            
             if (nodeId == NO_MATCH_NODE)
                 return false;
             if (pieces[nodeId.X, nodeId.Y] != null)
@@ -50,11 +50,16 @@ namespace Gomoku
 
             Point formPos = convertToFormPosition(nodeId);
 
-
             if (type == PieceType.BLACK)
+            {
                 pieces[nodeId.X, nodeId.Y] = new BlackPiece(formPos.X, formPos.Y);
+                // MessageBox.Show(Convert.ToString(nodeId.X) + "," + Convert.ToString(nodeId.Y), "座標");
+            }
             else
+            {
                 pieces[nodeId.X, nodeId.Y] = new WhitePiece(formPos.X, formPos.Y);
+                // MessageBox.Show(Convert.ToString(nodeId.X) + "," + Convert.ToString(nodeId.Y), "座標");
+            }
 
             lastPlacedNode = nodeId;
             return pieces[nodeId.X, nodeId.Y];
