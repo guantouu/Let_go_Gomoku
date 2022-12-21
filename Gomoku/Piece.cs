@@ -11,6 +11,7 @@ namespace Gomoku
     abstract class Piece : PictureBox
     {
         private static readonly int IMAGE_WIDTH = 50;
+        protected Point pieceLocation;
         public Piece(int x , int y)
         {
             this.BackColor = Color.Transparent;
@@ -18,6 +19,7 @@ namespace Gomoku
             this.Size = new Size(IMAGE_WIDTH, IMAGE_WIDTH);
         }
         public abstract PieceType GetPieceType();
-        
+
+        public abstract Point GetPoint();
     }
 }
